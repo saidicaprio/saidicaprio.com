@@ -147,7 +147,7 @@
   </header>
 
   <section class="post">
-    <p>每次启动hexo的时候都有这个报错，很是头疼<br><img src="http://p4yixtz2j.bkt.clouddn.com/1520588306.png" alt=""><br>百度了一下发现 </p>
+    <p>每次启动hexo的时候都有这个报错，很是头疼<br><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/1520588306.png" alt=""><br>百度了一下发现 </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo --no-optional</span><br></pre></td></tr></table></figure>
 <p>这行命令没啥用，后来去了stackoverflow发现了一个回答</p>
 <p>This worked for me after switching to Node 6.1 (and when re-installing node modules didn’t work):</p>
@@ -158,7 +158,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install</span><br></pre></td></tr></table></figure>
 <p>I found this thread before combining your attempts with another solution on the Github project issues for restify (<a href="https://github.com/restify/node-restify/issues/1093" target="_blank" rel="noopener">https://github.com/restify/node-restify/issues/1093</a>) and simplified best as possible.</p>
 <p>还是没啥用，但是得到了灵感，我用这个方法首先是报错：</p>
-<p><img src="http://p4yixtz2j.bkt.clouddn.com/1520588483.png" width="800" height="600"></p>
+<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/1520588483.png" width="800" height="600"></p>
 <p>然后就到~/.npmrc文件中修改npm的源</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">registry=https:<span class="comment">//registry.npmjs.org</span></span><br></pre></td></tr></table></figure>
 <p>将淘宝的源改为官方的，然后重新执行上面的<code>npm install dtrace-provider --save</code> 就安装下来的，直接到<br><code>/usr/local/lib/node_modules/hexo-cli/node_modules/</code>目录下把<code>dtrace-provider</code>文件夹直接替换掉，报错终于解决了！</p>

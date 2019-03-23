@@ -171,11 +171,11 @@
 <blockquote>
 <p> 有了NAT以后，内网的主机不在需要申请公网IP地址，只需要将内网主机地址和端口通过NAT映射到网络出口的公网IP即可，然后通信的两端在无感知的情况下进行通信。这也是为什么说NAT挽救了IPV4，因为大量的内网主机有了NAT，只需要很少的公网地址做映射就可以了，如此就可以节约出很多的IPV4地址空间。</p>
 </blockquote>
-<h3 id="1-1-Static-NAT将内部网络的私有IP地址转换为公有IP地址，IP地址对是一对一的，是一直不变的。"><a href="#1-1-Static-NAT将内部网络的私有IP地址转换为公有IP地址，IP地址对是一对一的，是一直不变的。" class="headerlink" title="1.1 Static NAT将内部网络的私有IP地址转换为公有IP地址，IP地址对是一对一的，是一直不变的。"></a>1.1 Static NAT将内部网络的私有IP地址转换为公有IP地址，IP地址对是一对一的，是一直不变的。</h3><p><img src="http://p4yixtz2j.bkt.clouddn.com/1539067403.png" width="600/"></p>
+<h3 id="1-1-Static-NAT将内部网络的私有IP地址转换为公有IP地址，IP地址对是一对一的，是一直不变的。"><a href="#1-1-Static-NAT将内部网络的私有IP地址转换为公有IP地址，IP地址对是一对一的，是一直不变的。" class="headerlink" title="1.1 Static NAT将内部网络的私有IP地址转换为公有IP地址，IP地址对是一对一的，是一直不变的。"></a>1.1 Static NAT将内部网络的私有IP地址转换为公有IP地址，IP地址对是一对一的，是一直不变的。</h3><p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/1539067403.png" width="600/"></p>
 <h3 id="1-2-Pooled-NAT"><a href="#1-2-Pooled-NAT" class="headerlink" title="1.2 Pooled NAT"></a>1.2 Pooled NAT</h3><p>动态NAT 是多对多的。将内部网络的私有IP地址转换为公用IP地址时，IP地址是不确定，随机的。所有被授权访问Internet的私有IP地址可随机转换为任何指定合法的IP地址。也就是说，只要指定哪些内部地址可以进行转换，以及用哪些合法地址作为外部地址时，就可以进行动态NAT转换。动态NAT是在路由器上配置一个外网IP地址池，当内部有计算机需要和外部通信时，就从地址池里动态的取出一个外网IP，并将他们的对应关系绑定到NAT表中，通信结束后，这个外网IP才被释放，可供其他内部IP地址转换使用，这个DHCP租约IP有相似之处。当ISP提供的合法IP地址略少于网络内部的计算机数量时。可以采用动态转换的方式。</p>
-<p><img src="http://p4yixtz2j.bkt.clouddn.com/1539067703.png" width="600/"></p>
+<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/1539067703.png" width="600/"></p>
 <h3 id="1-3-NAPT（Network-Address-Port-Translation）"><a href="#1-3-NAPT（Network-Address-Port-Translation）" class="headerlink" title="1.3 NAPT（Network Address Port Translation）"></a>1.3 NAPT（Network Address Port Translation）</h3><p>网络地址端口转换是多对一的。改变外出数据包的源端口并进行端口转换，采用端口多路复用方式。内部网络的所有主机均可共享一个合法外部IP地址实现对Internet的访问，可以最大限度地节约IP地址资源。同时，也可以隐藏网络内部的所有主机，有效避免来自Internet的攻击。因此，目前网络中应用最多的就是PAT规则。这是最常用的NAT技术，也是IPv4能够维持到今天的最重要的原因之一，它提供了一种多对一的方式，对多个内网IP地址，边界路由可以给他们分配一个外网IP，利用这个外网IP的不同端口和外部进行通信。NAPT与 动态NAT 不同，它将内部连接映射到外部网络中的一个单独的IP地址上，同时在该地址上加上一个由NAT设备选定的端口号。</p>
-<p><img src="http://p4yixtz2j.bkt.clouddn.com/1539067843.png" width="600/"></p>
+<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/1539067843.png" width="600/"></p>
 <p><code>NAPT</code>是使用最普遍的一种转换方式，在<code>HomeGW</code>中也主要使用该方式。</p>
 <ul>
 <li><p><code></code>源NAT<code>（</code>Source NAT<code>，</code>SNAT<code>）：修改数据包的源地址。源</code>NAT<code>改变第一个数据包的来源地址，它永远会在数据包发送到网络之前完成，数据包伪装就是一个</code>SNAT`的例子。</p>
@@ -185,7 +185,7 @@
 </ul>
 <h2 id="二、什么是内网穿透？"><a href="#二、什么是内网穿透？" class="headerlink" title="二、什么是内网穿透？"></a>二、什么是内网穿透？</h2><p><strong>NAT的缺陷之一就是只能由内网主机发起连接，外网主机无法主动连接到内网。</strong> 这就意味着外部节点无法和内网主机进行P2P通信</p>
 <h3 id="内网穿透的方式有哪些？"><a href="#内网穿透的方式有哪些？" class="headerlink" title="内网穿透的方式有哪些？"></a>内网穿透的方式有哪些？</h3><h3 id="2-1-STUN——UDP打洞"><a href="#2-1-STUN——UDP打洞" class="headerlink" title="2.1 STUN——UDP打洞"></a>2.1 STUN——UDP打洞</h3><p>全称为<code>Simple Tranversal of UDP through NAT</code>   </p>
-<p><img src="http://p4yixtz2j.bkt.clouddn.com/1539069227.png" width="600/"></p>
+<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/1539069227.png" width="600/"></p>
 <p>假设两个不同网络中的设备A和B想穿透NAT进行点对点通信，其中STUN SERVER是部署在公网中的STUN服务器。    </p>
 <ol>
 <li>A通过NAT网关向SERVER发送STUN请求消息(UDP)，查询并注册自己经过NAT映射后的公网地址  </li>
@@ -209,13 +209,13 @@
 <li>Spike</li>
 </ul>
 <p>花生壳的原理如下：</p>
-<p><img src="http://p4yixtz2j.bkt.clouddn.com/1539069969.png" width="600/"></p>
+<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/1539069969.png" width="600/"></p>
 <p>在花生壳端口映射配置页面配置好映射端口</p>
-<p><img src="http://p4yixtz2j.bkt.clouddn.com/1539074278.png" width="700/"></p>
+<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/1539074278.png" width="700/"></p>
 <p>内网穿透起到了地址转换的功能，也就是把公网的地址进行翻译，转成为一种私有的地址。</p>
 <p><img src="http://upload-cdn.oray.com/upload/help/1806/201806211156382125.jpg" width="600/"></p>
 <p>可以看到，花生壳有一个公网服务器，这个服务器就是这里所谓的<code>TURN SERVER</code> 先向这个服务器注册号自己的内网端口号和内网主机号，然后再本地开启花生壳App。</p>
-<p><img src="http://p4yixtz2j.bkt.clouddn.com/1539073721.png" width="800/"></p>
+<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/1539073721.png" width="800/"></p>
 <p>从上图中可以看出真个TURN内网穿透的流程，花生壳App通过一个动态的端口向<code>TURN SERVER</code> （103.46.128.49）发起了请求，建立了连接，然后本地自己建立了一个进程，这个进程所监听的端口正是我们在花生壳的端口配置界面所写入的那个端口。这个进程就是内网服务器。</p>
 <p>之后外网的某个客户端想要访问内网进程，就需要去和<code>TURN SERVER</code> 发起连接，这样花生壳App和外网客户端的连接就通过公网服务器连接了起来，之间发送的所有数据都要通过公网服务器。</p>
 <p><strong>那么为什么内网服务器可以收到外网客户端的数据呢？</strong></p>
@@ -273,9 +273,9 @@
 </table>
 <p>常我们需要用到的是AddPortMapping进行端口映射，以及GetExternalIPAddress获取到映射的公网地址。</p>
 <h2 id="三、手动操作路由器实现内网穿透"><a href="#三、手动操作路由器实现内网穿透" class="headerlink" title="三、手动操作路由器实现内网穿透"></a>三、手动操作路由器实现内网穿透</h2><p>家用的 宽带光猫+路由器 分配主机IP的模式可以通过手动添加端口映射的方式来实现内网穿透</p>
-<h3 id="访问路由器的IP地址来查看路由器的NAT端口映射"><a href="#访问路由器的IP地址来查看路由器的NAT端口映射" class="headerlink" title="访问路由器的IP地址来查看路由器的NAT端口映射"></a>访问路由器的IP地址来查看路由器的NAT端口映射</h3><p><img src="http://p4yixtz2j.bkt.clouddn.com/1539058327.png" width="600/"></p>
+<h3 id="访问路由器的IP地址来查看路由器的NAT端口映射"><a href="#访问路由器的IP地址来查看路由器的NAT端口映射" class="headerlink" title="访问路由器的IP地址来查看路由器的NAT端口映射"></a>访问路由器的IP地址来查看路由器的NAT端口映射</h3><p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/1539058327.png" width="600/"></p>
 <p>上面这个页面定义了内部监听的端口号：40404和<br>外网需要访问时连接的端口号：50505</p>
-<p><img src="http://p4yixtz2j.bkt.clouddn.com/1539078050.png" width="600/"></p>
+<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/1539078050.png" width="600/"></p>
 <p>这里是宽带光猫的配置页面，需要注意的是填写好一对一地址转换这里：</p>
 <ul>
 <li>外网IP地址：即为电信运营商分配的家庭公网IP地址</li>
