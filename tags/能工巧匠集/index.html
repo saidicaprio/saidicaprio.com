@@ -137,32 +137,18 @@
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2017/09/配置SourceTree脚本/" title="link to post.title">配置SourceTree脚本</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2019/05/Block的本质/" title="link to post.title">Block的本质</a></h2>
       <p class="excerpt">
     
-      首先我们来看下SourceTree的Custom Actions是什么？Custom Actions是SourceTree提供给用户去执行自己的一些脚本的一些设置。首先打开SourceTree，点击菜单栏上的Preferences（或者使用Command＋，），点击Custom Actions就可以看到了。样式如下图
- 
-可以看到上面装载了一些我自定义的脚本。以第一个脚本为例，”lvUpdateT
+      其实block本质上也是一个OC对象，它内部也有个isa指针block是封装了函数调用以及函数调用环境的OC对象
+1.block的底层结构如下图所示
+
+12345678910111213141516struct __main_block_impl_0 &amp;#123;    struct __block_impl impl;    struct __main_block_desc_0* Desc;&amp;#
     &hellip;
       </p>
-      <div class="post-list__meta"><time datetime="2017-09-12T08:37:46.000Z" class="post-list__meta--date date">2017-09-12</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/iOS知识库/">iOS知识库</a>
-</span><a class="btn-border-small" href="/2017/09/配置SourceTree脚本/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2017/09/扶桑莫叹渺茫中/" title="link to post.title">扶桑莫叹渺茫中</a></h2>
-      <p class="excerpt">
-    
-      Pre来之前还是做了很多的准备工作，写了2份行程安排，查了很多景点、路线、常识等各种相关内容，因为一路都是自由行，语言又不通，必然得做好准备工作。还是觉得自由行会比较好，因为语境什么的都是对外的，不想跟团去了听到的也都是中国话，能够更好的体验到当地的人文、风俗等。
-回忆总是比具体的细节要美好，这些实实在在的行程转化为具体的文字，略微显得枯燥。我爱旅游，喜欢自己处理好准备好行程中的各种琐事、细节，遇
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2017-09-12T05:34:21.000Z" class="post-list__meta--date date">2017-09-12</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/朝花夕拾/">朝花夕拾</a>
-</span><a class="btn-border-small" href="/2017/09/扶桑莫叹渺茫中/">继续阅读</a></div>
+      <div class="post-list__meta"><time datetime="2019-05-16T10:13:26.000Z" class="post-list__meta--date date">2019-05-16</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/能工巧匠集/">能工巧匠集</a>
+</span><a class="btn-border-small" href="/2019/05/Block的本质/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   
@@ -196,6 +182,42 @@ https://developer.apple.com/videos/play/wwdc2017/602/
       <div class="post-list__meta"><time datetime="2017-04-11T01:31:10.000Z" class="post-list__meta--date date">2017-04-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
   <a class="tag-link" href="/tags/能工巧匠集/">能工巧匠集</a>
 </span><a class="btn-border-small" href="/2017/04/现代化OC语法/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/12/iOS10中的通知/" title="link to post.title">iOS10中的通知</a></h2>
+      <p class="excerpt">
+    
+      iOS10对推送通知的内容进行了一次大的重构，加入了一个新的框架 UserNotifications.framework 来集中管理和使用 iOS 系统中通知的功能，除此之外，还增加了很多额外的很好用的功能，比如：
+
+撤回一条通知
+更新已经展示的通知
+中途修改通知内容
+在通知中展示图片视频
+自定义通知 UI 等
+
+一、普通通知与其流程远程通知 (Remote Notification)的工作流程：
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-12-24T11:30:29.000Z" class="post-list__meta--date date">2016-12-24</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/能工巧匠集/">能工巧匠集</a>
+</span><a class="btn-border-small" href="/2016/12/iOS10中的通知/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/09/OC进化简述/" title="link to post.title">OC进化简述</a></h2>
+      <p class="excerpt">
+    
+      Objective-C 最初起源于 NeXTSTEP 操作系统，之后乔布斯回到苹果，便将它在OS X和iOS中继承了下来。20世纪80年代初，Brad Box和Tom Love以SmallTalk-80语言为基础发明了Objective-C，Smalltalk是历史上第二个面向对象的程序设计语言，也就是说：Objective-C就是C语言面向对象SmallTalk语法话的结果。让我们来看看早起Sm
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-09-28T08:37:46.000Z" class="post-list__meta--date date">2016-09-28</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/能工巧匠集/">能工巧匠集</a>
+</span><a class="btn-border-small" href="/2016/09/OC进化简述/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   
