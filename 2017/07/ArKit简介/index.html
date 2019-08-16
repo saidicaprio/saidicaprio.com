@@ -147,7 +147,7 @@
   </header>
 
   <section class="post">
-    <p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKitLogo.png" alt=""> </p>
+    <p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKitLogo.png" alt> </p>
 <p>ARKit是WWDC发布iOS11系统所新增框架。ARKit是一个移动AR平台，提供高层次的API，可在iOS 11 + A9芯片及以上（iPhone 6s起）上使用。</p>
 <p>Session 602 Introducing ARKit: Augmented Reality for iOS</p>
 <p><a href="https://developer.apple.com/videos/play/wwdc2017/602/" target="_blank" rel="noopener">https://developer.apple.com/videos/play/wwdc2017/602/</a></p>
@@ -163,7 +163,7 @@
 <li>3.iOS设备：处理器A9及以上（6S机型及以上）</li>
 <li>4.MacOS系统：10.12.4及以上（安装Xcode9对Mac系统版本有要求）</li>
 </ul>
-<h2 id="一、ARKit简介"><a href="#一、ARKit简介" class="headerlink" title="一、ARKit简介"></a>一、ARKit简介</h2><h3 id="ARKit如何工作？"><a href="#ARKit如何工作？" class="headerlink" title="ARKit如何工作？"></a>ARKit如何工作？</h3><p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKit框架结构.png" alt=""> </p>
+<h2 id="一、ARKit简介"><a href="#一、ARKit简介" class="headerlink" title="一、ARKit简介"></a>一、ARKit简介</h2><h3 id="ARKit如何工作？"><a href="#ARKit如何工作？" class="headerlink" title="ARKit如何工作？"></a>ARKit如何工作？</h3><p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKit框架结构.png" alt> </p>
 <h4 id="Step1-Tracking-追踪"><a href="#Step1-Tracking-追踪" class="headerlink" title="Step1. Tracking 追踪"></a>Step1. Tracking 追踪</h4><ul>
 <li>World tracking 世界跟踪</li>
 <li>视觉惯性测距</li>
@@ -185,11 +185,11 @@
 <li>由<code>ARCamera</code>负责捕捉摄像头画面</li>
 <li>由ARSession负责搭建3D场景</li>
 </ul>
-<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKit框架流程图.png" alt=""> </p>
+<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKit框架流程图.png" alt> </p>
 <blockquote>
 <p>综上所述，ARKit捕捉3D现实世界使用的是自身的功能，这个功能是在iOS11新增的。而ARKit在3D现实场景中添加虚拟物体使用的是父类SCNView的功能，这个功能早在iOS8时就已经添加（SceneKit是iOS8新增）</p>
 </blockquote>
-<h2 id="二、Tracking-追踪"><a href="#二、Tracking-追踪" class="headerlink" title="二、Tracking 追踪"></a>二、Tracking 追踪</h2><p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKitCapturing.png" alt=""> </p>
+<h2 id="二、Tracking-追踪"><a href="#二、Tracking-追踪" class="headerlink" title="二、Tracking 追踪"></a>二、Tracking 追踪</h2><p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKitCapturing.png" alt> </p>
 <h3 id="2-1-影响追踪质量的因素"><a href="#2-1-影响追踪质量的因素" class="headerlink" title="2.1 影响追踪质量的因素"></a>2.1 影响追踪质量的因素</h3><ul>
 <li>不能间断的传感器数据</li>
 <li>特征显著的周边环境</li>
@@ -199,12 +199,12 @@
 <p>当<code>ARWorldTrackingSessionConfiguration</code>计算出相机在3D世界中的位置时，它本身并不持有这个位置数据，而是将其计算出的位置数据交给<code>ARSession</code>去管理，而相机的位置数据对应的类就是<code>ARFrame</code></p>
 <p><code>ARCamera</code>只负责捕捉图像，不参与数据的处理。它属于3D场景中的一个环节，每一个3D Scene都会有一个Camera</p>
 <p>它们三者之间的关系看起来如下图：</p>
-<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKitSession关系图.png" alt=""></p>
+<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKitSession关系图.png" alt></p>
 <p>ARCamera在3D世界的位置看起来是这样的:</p>
-<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKitCamera.png" alt=""></p>
-<h3 id="2-2-追踪状态？"><a href="#2-2-追踪状态？" class="headerlink" title="2.2 追踪状态？"></a>2.2 追踪状态？</h3><h4 id="共有四种状态，在受限时，最好通知用户"><a href="#共有四种状态，在受限时，最好通知用户" class="headerlink" title="共有四种状态，在受限时，最好通知用户"></a>共有四种状态，在受限时，最好通知用户</h4><p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/跟踪状态.png" alt=""><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">session</span><span class="params">(<span class="number">_</span> session: ARSession, cameraDidChangeTrackingState camera: ARCamera)</span></span> &#123; </span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">case</span> .limited(<span class="keyword">let</span> reason) = camera.trackingState &#123;</span><br><span class="line">		<span class="comment">// Notify user of limited tracking state</span></span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKitCamera.png" alt></p>
+<h3 id="2-2-追踪状态？"><a href="#2-2-追踪状态？" class="headerlink" title="2.2 追踪状态？"></a>2.2 追踪状态？</h3><h4 id="共有四种状态，在受限时，最好通知用户"><a href="#共有四种状态，在受限时，最好通知用户" class="headerlink" title="共有四种状态，在受限时，最好通知用户"></a>共有四种状态，在受限时，最好通知用户</h4><p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/跟踪状态.png" alt><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">session</span><span class="params">(<span class="number">_</span> session: ARSession, cameraDidChangeTrackingState camera: ARCamera)</span></span> &#123; </span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">case</span> .limited(<span class="keyword">let</span> reason) = camera.trackingState &#123;</span><br><span class="line">		<span class="comment">// Notify user of limited tracking state</span></span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>Session中断 或者 相机不可用，就追踪停止<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sessionWasInterrupted</span><span class="params">(<span class="number">_</span> session: ARSession)</span></span> &#123; </span><br><span class="line">	showOverlay()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sessionInterruptionEnded</span><span class="params">(<span class="number">_</span> session: ARSession)</span></span> &#123; </span><br><span class="line">	hideOverlay()</span><br><span class="line">	<span class="comment">// Optionally restart experience</span></span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="三、Scene-Understanding-场景理解"><a href="#三、Scene-Understanding-场景理解" class="headerlink" title="三、Scene Understanding 场景理解"></a>三、Scene Understanding 场景理解</h2><h3 id="3-1-平面检测"><a href="#3-1-平面检测" class="headerlink" title="3.1 平面检测"></a>3.1 平面检测</h3><p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKitSceneUnderstanding.png" alt=""> </p>
+<h2 id="三、Scene-Understanding-场景理解"><a href="#三、Scene-Understanding-场景理解" class="headerlink" title="三、Scene Understanding 场景理解"></a>三、Scene Understanding 场景理解</h2><h3 id="3-1-平面检测"><a href="#3-1-平面检测" class="headerlink" title="3.1 平面检测"></a>3.1 平面检测</h3><p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKitSceneUnderstanding.png" alt> </p>
 <ul>
 <li>相对于重力的水平面</li>
 <li>跨多个帧运行</li>
@@ -223,7 +223,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKitHit-Testing.png" alt=""> </p>
+<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKitHit-Testing.png" alt> </p>
 <p>根据类型的不同，碰撞测试的运作方法会不一样</p>
 <h3 id="3-3-光线评估"><a href="#3-3-光线评估" class="headerlink" title="3.3 光线评估"></a>3.3 光线评估</h3><ul>
 <li>基于捕获图像的环境强度</li>
@@ -238,7 +238,7 @@
 <li>更新重力场下的transforms</li>
 </ul>
 <h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><h3 id="ARKit工作流程"><a href="#ARKit工作流程" class="headerlink" title="ARKit工作流程"></a>ARKit工作流程</h3><p>ARKit与SceneKit的配合：通过ARSCNView，绘制捕捉的图像，更新SCNCamera，更新光照，将SCNNode映射到ARAnchor上</p>
-<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKit工作流程.png" alt=""> </p>
+<p><img src="https://saidicaprio.oss-cn-shanghai.aliyuncs.com/imgs/ARKit工作流程.png" alt> </p>
 <ul>
 <li>1.ARSCNView加载场景SCNScene</li>
 <li>2.SCNScene启动相机ARCamera开始捕捉场景</li>
@@ -266,7 +266,7 @@
                 &hellip;
                 </p>
                 <div class="post-list__meta"><time datetime="2017-09-12T05:34:21.000Z" class="post-list__meta--date date">2017-09-12</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/朝花夕拾/">朝花夕拾</a>
+  <a class="tag-link" href="/tags/生如夏花/">生如夏花</a>
 </span><a class="btn-border-small" href="/2017/09/扶桑莫叹渺茫中/">继续阅读</a></div>
                            
             </div>
